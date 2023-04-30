@@ -5,6 +5,7 @@ import java.util.List;
 
 import battleship.model.Result;
 import battleship.model.Shot;
+import battleship.model.Constants.Orientation;
 import battleship.model.Constants.ShipType;
 import battleship.model.Constants.ShotResult;
 
@@ -12,8 +13,6 @@ import battleship.model.Constants.ShotResult;
  * This class contains the rules for each ship in the fleet
  */
 public class ShipRules {
-    
-    public enum Orientation {HORIZONTAL, VERTICAL};
 
     /** The name of the ship */
     private ShipType type;

@@ -20,4 +20,11 @@ public class Constants {
         HIT,
         SUNK
     }
+
+    public enum Orientation {
+        UNKNOWN,
+        HORIZONTAL, 
+        VERTICAL
+    };
+
 }
