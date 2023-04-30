@@ -1,6 +1,7 @@
-package org.robodad.battleship.model;
+package battleship.model;
 
-import org.robodad.battleship.Constants.*;
+import battleship.model.Constants.ShipType;
+import battleship.model.Constants.ShotResult;
 
 public class Result {
     
@@ -18,5 +19,9 @@ public class Result {
 
     public ShipType getShip() {
         return this.ship;
+    }
+
+    public String toString() {
+        return new String(this.ship.name() + ": " + this.result.name());
     }
 }

@@ -1,12 +1,15 @@
-import org.robodad.battleship.Constants.ShipType;
-import org.robodad.battleship.Constants.ShotResult;
-import org.robodad.battleship.model.Result;
-import org.robodad.battleship.model.Shot;
+import battleship.controller.FleetRules;
+import battleship.controller.ShipRules;
+import battleship.model.Result;
+import battleship.model.Shot;
+import battleship.model.Constants.ShipType;
+import battleship.model.Constants.ShotResult;
+import battleship.plugins.Robot;
+import battleship.plugins.Strategy;
+import battleship.plugins.UniqueRandom;
 
-import plugins.Strategy;
-import plugins.UniqueRandom;
-
-// TODO 1) create a new class in the plugins package, similar to Random or UniqueRandom, and give it a unique name
+// TODO 1) create a new class in the plugins package, similar to Random or
+//         UniqueRandom, and give it a unique name
 // TODO 2) import your new class here
 
 public class Main {
@@ -16,18 +19,36 @@ public class Main {
 
         System.out.println(strategy.getName());
 
-        for (int index = 0; index < 10; index++) {  // TODO 4) adjust the index limit to test more or fewer cases
+        FleetRules fleet = new FleetRules();
 
-            // TODO 5) adjust the ShotResult and ShipType values to change the behavior of the aim function
-            Result result = new Result(ShotResult.MISS, ShipType.NONE); 
-            Shot shot =  strategy.aim(result);
-            System.out.println(shot);
+        // Patrol boat: A1 A2
+        fleet.add(new ShipRules(ShipType.PATROL_BOAT, new Shot(1,1), ShipRules.Orientation.HORIZONTAL, 2));
+
+        // Destroyer: B2 C2 D2
+        fleet.add(new ShipRules(ShipType.DESTROYER, new Shot(2,2), ShipRules.Orientation.VERTICAL, 3));
+
+        // Submarine: B8 C8 D8
+        fleet.add(new ShipRules(ShipType.SUBMARINE, new Shot(2,8), ShipRules.Orientation.VERTICAL, 3));
+
+        // Battleship: F3 F4 F5 F6
+        fleet.add(new ShipRules(ShipType.BATTLESHIP, new Shot(6,3), ShipRules.Orientation.HORIZONTAL, 4));
+
+        // Battleship: H5 H6 H7 H8 H9
+        fleet.add(new ShipRules(ShipType.CARRIER, new Shot(8,5), ShipRules.Orientation.HORIZONTAL, 5));
+
+        Result result = new Result(ShotResult.MISS, ShipType.NONE); 
+        int count = 0;
+        while (!fleet.isLost()) {
+            Shot shot = strategy.aim(result);
+            result = fleet.handleShot(shot);
+            count++;
         }
+        System.out.println("Fleet sunk in " + count + " shots");
     }
 }
 
 // To compile this testing frame work:
-// javac Main.java .\org\robodad\battleship\model\*.java .\org\robodad\battleship\Constants.java .\plugins\*.java
+// javac Main.java .\battleship\model\*.java .\battleship\plugins\*.java .\battleship\controller\*.java
 
 // To run:
 // java Main

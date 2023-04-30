@@ -1,9 +1,9 @@
-package org.robodad.battleship.model;
+package battleship.model;
 
 import java.util.Objects;
 
 /**
- * This class allow a {@link org.robodad.battleship.model.Player} to take shots
+ * This class allow a {@link battleship.model.Player} to take shots
  * at the opponent player
  */
 public class Shot {

@@ -1,7 +1,7 @@
-package plugins;
+package battleship.plugins;
 
-import org.robodad.battleship.model.Shot;
-import org.robodad.battleship.model.Result;
+import battleship.model.Shot;
+import battleship.model.Result;
 
 /**
  * This class implements a completely random strategy of shots.  Duplicate shots are possible.

@@ -1,4 +1,4 @@
-package org.robodad.battleship;
+package battleship.model;
 
 public class Constants {
 
